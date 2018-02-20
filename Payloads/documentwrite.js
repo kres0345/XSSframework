@@ -1,0 +1,1 @@
+var a = document.documentElement.innerHTML;document.write(a + "<p>This is not XSS secure</p>");
