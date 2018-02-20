@@ -1,0 +1,2 @@
+A small code that keeps injecting the numbers 12345 into the website
+ending in the webpage crashes(local), this crashes faster than `crashwebpage.js`.
