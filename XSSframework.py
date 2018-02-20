@@ -135,6 +135,14 @@ def selectmethod():
         print(output.replace("b'","").replace("'",""))
         selectmethod()
 
+    if(int(methodnr) == 99):
+        import sys
+        print("should work.")
+        sys.exit(0)
+        raise Exception
+        kill
+        exit
+
     if(int(methodnr) == 0):
         helpfunc()
         print(enters)
@@ -150,6 +158,7 @@ def selectmethod():
         while True:
             xssprompt()
         xssprompt()
+
 
 enters = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
 try:
