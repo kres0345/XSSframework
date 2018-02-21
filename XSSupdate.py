@@ -6,9 +6,9 @@ def replace_between(text, begin, end, alternative=''):
 def checkPayloads():
     print("Checking for updates...")
     url = "https://github.com/kres0345/XSSframework/tree/master/Payloads"
-    urllib.request.urlretrieve(url, 'tmp\\PayloadsNew.html')
-    NewPayloads = open("tmp\\PayloadsNew.html", "r").read()
-    OldPayloads = open("tmp\\PayloadsOld.html", "r").read()
+    urllib.request.urlretrieve(url, 'tmp\\PayloadsNew.website')
+    NewPayloads = open("tmp\\PayloadsNew.website", "r").read()
+    OldPayloads = open("tmp\\PayloadsOld.website", "r").read()
     #Start NewPayloads
     middle = NewPayloads.split('<meta name="request-id"', 1)[1].split('data-pjax-transient>', 1)[0]
     NewPayloads = NewPayloads.replace(middle, "")
@@ -33,19 +33,19 @@ def checkPayloads():
     middle = OldPayloads.split('<li class="mr-3">&', 1)[1].split('Inc.</li>', 1)[0]
     OldPayloads = OldPayloads.replace(middle, "")
     #end oldpayloads
-    #open("test.html", "w").write(NewPayloads)
+    #open("test.website", "w").write(NewPayloads)
     if (NewPayloads != OldPayloads):
         url = "https://github.com/kres0345/XSSframework/tree/master/Payloads"
-        urllib.request.urlretrieve(url, 'tmp\\PayloadsOld.html')
+        urllib.request.urlretrieve(url, 'tmp\\PayloadsOld.website')
         print("New Payloads discovered, updating.")
     else:
         print("No new Payloads discovered.")
 def checkMethods():
     print("Checking for updates...")
     url = "https://github.com/kres0345/XSSframework/tree/master/Methods"
-    urllib.request.urlretrieve(url, 'tmp\\MethodNew.html')
-    NewMethods = open("tmp\\MethodsNew.html", "r").read()
-    OldMethods = open("tmp\\MethodsOld.html", "r").read()
+    urllib.request.urlretrieve(url, 'tmp\\MethodNew.website')
+    NewMethods = open("tmp\\MethodsNew.website", "r").read()
+    OldMethods = open("tmp\\MethodsOld.website", "r").read()
     #Start NewMethods
     middle = NewMethods.split('<meta name="request-id"', 1)[1].split('data-pjax-transient>', 1)[0]
     NewMethods = NewMethods.replace(middle, "")
@@ -70,10 +70,10 @@ def checkMethods():
     middle = OldMethods.split('<li class="mr-3">&', 1)[1].split('Inc.</li>', 1)[0]
     OldMethods = OldMethods.replace(middle, "")
     #end oldMethods
-    #open("test.html", "w").write(NewPayloads)
+    #open("test.website", "w").write(NewPayloads)
     if (NewPayloads != OldPayloads):
         url = "https://github.com/kres0345/XSSframework/tree/master/Payloads"
-        urllib.request.urlretrieve(url, 'tmp\\PayloadsOld.html')
+        urllib.request.urlretrieve(url, 'tmp\\PayloadsOld.website')
         print("New Payloads discovered, updating.")
     else:
         print("No new Payloads discovered.")
