@@ -1,0 +1,9 @@
+This is an info file, this is just an informal file on the payload with it, this file is optional
+The above line has the recommended line lengh of a .info file for this program.
+
+You can also place credits inside this file, it's for you to decide. A couple examples
+PAYLOAD BY: kres0345
+---Made by: Kres0345---
+CREDITS: kres0345
+
+You can see the contents by typing in XSS shell `info example.js`.
