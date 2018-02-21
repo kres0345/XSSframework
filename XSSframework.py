@@ -109,6 +109,8 @@ def selectmethod():
  /_/ \_\_____/_____/  |_| |_|  \__,_|_| |_| |_|\___| \_/\_/ \___/|_|  |_|\_\
 ''')
     print('''
+    Exit on Windows with `CTRL + Break`.
+    Exit on Linux with `CTRL + Z`.
     --- METHODS & XSS shell ---
     0: XSS command prompt.''')
     print(methodslist)
